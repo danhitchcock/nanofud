@@ -1,0 +1,291 @@
+<style>
+    .title-img{
+    background-color: #ffffff;
+    height: 200px;
+    width: 1115px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    }
+  .background-div{
+    width: 500px;
+    height: 500px;
+  }
+
+  /* entire container, keeps perspective */
+  .flip-container {
+    display: inline-block;
+    margin: 5px;
+    width: 300px;
+  	height: 220px;
+  	perspective: 1000px;
+  	border-radius: 5px;
+  	opacity: .9;
+
+  }
+  /* hide back of pane during swap */
+  .front, .back{
+    display: table;
+  	backface-visibility: hidden;
+    border: 1px solid grey;
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	border-radius: 5px;
+    padding: 10px;
+    width: 280px;
+  	height: 200px;
+    text-align: center;
+  }
+  	/* flip the pane when hovered */
+  .flip-container:hover .flipper, .flip-container.hover .flipper {
+  		transform: rotateY(180deg);
+  	}
+
+  /* flip speed goes here */
+  .flipper {
+  	transition: 0.6s;
+  	transform-style: preserve-3d;
+  	position: relative;
+
+  }
+
+  /* front pane, placed above back */
+  .front {
+  	/* for firefox 31 */
+  	transform: rotateY(0deg);
+  	background: linear-gradient(to bottom right, #ff9999, #ffeeee);
+  	color: #990000;
+    text-align: center;
+    font-size: 25px;
+  }
+
+  /* back, initially hidden pane */
+  .back {
+    z-index: 2;
+  	transform: rotateY(180deg);
+  	color: #000011;
+  	font-size: 25px;
+    background-image: url("{{url_for('static', filename='nano_transparent.png')}}"), linear-gradient(to bottom right, #eeeeff,#9999ff);
+  	background-size: contain;
+  	background-repeat: no-repeat;
+  	background-position: 50% 50%;
+  }
+  .center-text {
+
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .bottom-text {
+    font-size: 18px;
+    display: table-cell;
+    position: absolute;
+    width:100%;
+    bottom:0;
+    left: 0;
+    text-align:bottom;
+  }
+  .fudBox {
+      font-weight: bold;
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 22px;
+    color: #3333ff;
+    background: linear-gradient(to bottom right, #eeeeff,#9999ff);
+  }
+
+
+  #url {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+  }
+
+
+  .fud-text, #about{
+    font-weight: bold;
+    padding:  5px;
+    font-size: 25px;
+    color: #9999ff;
+
+  }
+  body {
+   text-align: center;
+      background-image: url("{{url_for('static', filename='background.png')}}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-attachment: fixed;
+     }
+</style>
+
+<script>
+var htmlText = "";
+  function loadNoteCards(){
+    var noteCards = [
+      [
+        'Myth: A cryptocurrency cannot be instant, feeless, secure, and decentralized.',
+        'Yes it can.',
+        'http://nano.org',
+        ''
+      ],
+      [
+        'Myth: Nano, like other cryptocurrencies, wastefully consumes energy and harms the environment.',
+        'Nano isn\'t mined. It consumes 1/8,480,000th the energy of Bitcoin per transaction, and the entire network can be powered by a single wind turbine.',
+        'https://www.reddit.com/r/nanocurrency/comments/8p4mqh/nano_fast_feeless_and_environmentally_friendly/',
+        'green energy consumption transaction electricity environment'
+      ],
+
+      [
+        'Myth: Being feeless, Nano is susceptible to spam and ledger bloat attacks.',
+        'Nano has several implemented and proposed solutions which will keep it running at full speed.',
+        '/spam_attacks',
+        'pow spam attack feeless proof of work ledger bloat wallet bloat'
+      ],
+
+      [
+        'Myth: Nano was unfairly distributed, and the developers control most of the coins.',
+        'Nano was distributed by CAPTCHA mining as fairly as possible, and the developers control less than 5%. No ICO was ever issued.',
+        '/distribution',
+        'distribution faucet ICO'
+      ],
+      [
+        'Myth: Nano developers are holding voting power in order to control the network.',
+        'The Nano developers are in the process of distributing voting power.',
+        '/decentralization',
+        ''
+      ],
+      [
+        'Concern: There is no financial incentive to operate a node.',
+        'While there is no financial incentive to run a node, there are plenty of other reasons.',
+        '/incentives',
+        'node incentive retailers representatives'
+      ],
+
+      [
+        'Myth: Nano is fast because it is centralized.',
+        'Nano is fast because of its Block Lattice architecture, which does not depend on centralization.',
+        '/decentralization',
+        'decentralize decentralization fast instant'
+      ],
+      [
+        'Concern: Nano is not a privacy coin.',
+        'Through the use of mixers and rolling wallet addresses, your balance can easily be concealed from bad actors.<br>Coming soon.',
+        '/privacy',
+        'privacy private wallets mixer'
+      ],
+
+
+      [
+        'Myth: The BitGrail incident was caused by an insecure Nano protocol, and someone has millions of Nanos.',
+        'Nanos were stolen because buggy BitGrail software. The stolen Nanos are thought to have been sold off long ago.',
+        '/bitgrail',
+        'bitgrail firano stolen theft'
+      ],
+      [
+        'Myth: Nano community members can be annoying.',
+        'Actually, this isn\'t a myth.',
+        'https://www.reddit.com/r/nanocurrency/',
+        ''
+      ],
+
+
+    ]
+    var whichCards = document.getElementById('fudBox').value;
+    var renderAll=(whichCards==='');
+    var htmlText ='';
+    // Mobile rendering
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|IE11|Opera Mini/i.test(navigator.userAgent) ) {
+        htmlText += "<div style=\"color: #000099; display: inline-block; background-color:rgba(255,255,255,.9); text-align: left;\">";
+        htmlText += "<b>Mobile site under construction. Please bear with me.</b>";
+        for (i = 0; i < noteCards.length; i++) {
+          if ( (noteCards[i][0].toLowerCase().search(whichCards.toLowerCase())>=0) || (noteCards[i][1].toLowerCase().search(whichCards.toLowerCase())>=0) || (renderAll)){
+            htmlText +="<BR><hr><BR><span style=\"color: darkred; font-weight: bold;\">" + noteCards[i][0] + "</span><br>";
+            htmlText += "<span style=\"color: forestgreen\">";
+            htmlText +=noteCards[i][1] + "</span>";
+            htmlText +="<a href=\"";
+            htmlText += noteCards[i][2] + "\"> Read more.</a>";
+          }
+        }
+
+        htmlText +="<BR><hr><BR><span style=\"color: darkred; font-weight: bold;\">";
+        htmlText +='Questions? Suggestions? Donations?' + "</span><br>";
+        htmlText +='<a href=\"/about\">About</a><br>';
+        htmlText +='<a href="mailto:nanofud.com@gmail.com">nanofud.com@gmail.com</a><br>';
+        htmlText +='Please check out <a href="http://www.nanote.net">Nanote.net</a> for donations!<br>';
+        htmlText +="<img src=\"{{url_for('static', filename='nanofudqr.png')}}\"><br>";
+        htmlText +="<span style=\"font-size:15px\">xrb_3nofud9zk1bqs6a7cnj1cjd8pdhqucm5g3fwwifchoszyodw81wqmgtryxzd</span>";
+
+      }
+    // desktop/laptop rendering
+    else{
+        for (i = 0; i < noteCards.length; i++) {
+          if ( (noteCards[i][0].toLowerCase().search(whichCards.toLowerCase())>=0) || (noteCards[i][1].toLowerCase().search(whichCards.toLowerCase())>=0) || (renderAll)){
+            htmlText +="\
+                <div class=\"flip-container\" ontouchstart=\"this.classList.toggle('hover');\">\
+                    <div class=\"flipper\">\
+                        <div class=\"front\"><span class=\"center-text\">";
+            htmlText +=noteCards[i][0];
+            htmlText +="</span></div><div class=\"back\"><span class=\"center-text\">"
+            htmlText +=noteCards[i][1];
+            htmlText +="</span><div class=\"bottom-text\">";
+            htmlText +="<a href=\"";
+            htmlText += noteCards[i][2] + "\">Continue reading </a>";
+            htmlText +="</div></div></div></div>";
+          }
+
+
+        }
+        htmlText +="\
+            <div class=\"flip-container\" ontouchstart=\"this.classList.toggle('hover');\">\
+                <div class=\"flipper\">\
+                    <div class=\"front\" style=\"background: linear-gradient(to bottom right, #99ff66, #eeffcc);color:darkgreen;\"><span class=\"center-text\">";
+        htmlText +='Questions? Suggestions? Donations?<br>Last updated 8-13-2018';
+        htmlText +="</span></div><div class=\"back\"><span class=\"center-text\">"
+        htmlText +='<a href=\"/about\">About</a><br>';
+        htmlText +='<a href="mailto:nanofud.com@gmail.com">nanofud.com@gmail.com</a><br>';
+        htmlText +='Please check out <a href="http://www.nanote.net">Nanote.net</a> for donations!<br>';
+        htmlText +="<img src=\"{{url_for('static', filename='nanofudqr.png')}}\"><br>";
+        htmlText +="<span style=\"font-size:15px\">xrb_3nofud9zk1bqs6a7cnj1cjd8pdhqucm5g3fwwifchoszyodw81wqmgtryxzd</span>";
+        htmlText +="</span></div></div></div>";
+
+
+    }
+    document.getElementById("cardContainer").innerHTML = htmlText;
+    document.getElementById("url").value = window.location.href +"?fud="+ whichCards;
+}
+
+    function copy() {
+      var copyText = document.getElementById("url");
+      copyText.select();
+      document.execCommand("copy");
+      alert("Copied the text: " + copyText.value);
+}
+</script>
+<title>NanoFUD</title>
+<body onload="loadNoteCards()">
+<meta charset="UTF-8">
+<meta name="description" content="Dedicated to dispell FUD about my favorite cryptocurrency, Nano. Presting NanoFUD">
+<meta name="keywords" content="FUD, Nano, nanocurrency, cryptocurrency, centralization, spam, attacks, bitgrail, pow, NanoFUD">
+<meta name="author" content="zily88">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<a href="/">
+    <div class="title-img">
+        <img src="{{url_for('static', filename='nanofud.png')}}" height="200px" /><br/>
+    </div>
+</a>
+
+<span class="fud-text">Search for FUD:
+    <input id="fudBox" class="fudbox" type ="text" onkeyup= "loadNoteCards()" onchange="loadNoteCards()" value="{{searchItem}}"/>
+    <button class="fudbox" onclick = "copy()">Copy FUD link</button>
+    <a href="/about" id = "about">About NanoFUD.com</a></span>
+<div class="notecards" id="cardContainer">
+</div>
+<input id="url" type="text"/>
+</body>

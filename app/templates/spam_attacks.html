@@ -1,0 +1,104 @@
+{% extends "explanation_template.html" %}
+{% block title %}
+Spam Attacks
+{% endblock %}
+{% block email %}
+Spam Attacks Suggestions
+{% endblock %}
+{% block body %}
+<script>
+    references = {
+        lee_faq: "https://www.reddit.com/r/nanocurrency/comments/80c6fg/questions_about_nano_from_charlie_lee/",
+        spam_cost: "https://www.reddit.com/r/RaiBlocks/comments/7lpw6j/colins_response_to_the_penny_spend_attack_thread/",
+        white_paper: "https://nano.org/en/whitepaper",
+        medium_article_bloat: "https://medium.com/@qertoip/it-seems-to-only-cost-3m-to-kill-nano-raiblocks-37d78a4e96ca",
+        ledger_pruning_wallet_bloat: "https://www.reddit.com/r/nanocurrency/comments/86r72w/is_nano_so_easily_centralizable/dw79uq0",
+        github_pow_scaling: "https://github.com/nanocurrency/raiblocks/issues/990#issuecomment-407858621",
+        github_attack_vectors: "https://github.com/nanocurrency/raiblocks/wiki/Attacks",
+        reddit_rant: "https://www.reddit.com/r/nanocurrency/comments/94tm7b/mitigating_spam_attacks/e3o1ikd/?context=3",
+        reddit_penny_spend_real: "https://www.reddit.com/r/nanocurrency/comments/7wu9g1/the_penny_spend_attack_why_its_a_very_real_issue/",
+        reddit_3m: "https://www.reddit.com/r/nanocurrency/comments/7yeq17/it_seems_to_only_cost_3m_to_centralize_nano/",
+        reddit_easily_cent: "https://www.reddit.com/r/nanocurrency/comments/86r72w/is_nano_so_easily_centralizable/",
+        reddit_spamming_increase: "https://www.reddit.com/r/nanocurrency/comments/7v9q8o/spamming_the_network_to_increase_the_size_of/",
+        reddit_mit_spam:"https://www.reddit.com/r/nanocurrency/comments/94tm7b/mitigating_spam_attacks/",
+        commits: "https://github.com/nanocurrency/raiblocks/commits/master",
+
+
+    }
+    // <span class="citation">white_paper</span>
+</script>
+
+<h1>Spam Related Attack Vectors</h1>
+Cryptocurrencies must deal with any of several attack vectors which can either cripple the network or make the ledger
+unusable. There are a number of articles citing these concerns, including:<br>
+<ul>
+<li>
+It seems to only cost $3m to centralize Nano (RaiBlocks)<span class='citation'>medium_article_bloat</span>
+</li>
+</ul>
+
+These articles have been discussed many times before on reddit:
+<ul>
+<li>
+ The Penny Spend Attack: Why It's a Very Real Issue That Has a Simple Solution<span class='citation'>reddit_penny_spend_real</span>
+ </li><li>
+ It seems to only cost $3m to centralize Nano<span class='citation'>reddit_3m</span>
+ </li><li>
+ Is NANO so easily centralizable?<span class='citation'>reddit_easily_cent</span>
+ </li><li>
+ Spamming the network to increase the size of historical nodes. Can this attack be mitigated in a good way?<span class='citation'>reddit_spamming_increase</span>
+ </li><li>
+ Mitigating spam attacks<span class='citation'>reddit_mit_spam</span>
+
+ </li>
+</ul>
+<br>
+It's important to remember that Nano is an incredibly new cryptocurrency and a work in progress,
+with commits being posted to GitHub nearly daily<span class="citation">commits</span>. In its current state, there is much
+to be done and it might be vulnerable to these attacks if development stopped today.
+Fortuantely, there is a dedicated team solving these issues, and they have proposed several solutions to protect the network.
+<h2>Spam Prevention</h2>
+Spam, related to cryptocurrency, can be thought of 'useless'
+transactions designed to clog the network. Thus two mechanisms
+to curb spam can either be to increase network throughput, or to throttle the number of transactions.
+Being feeless is a core principle of Nano; while nearly every other cryptocurrency has adopted fees as a deterrent for network spam,
+a different mechanism is employed in the Nano protocol. Nano uses proof-of-work (PoW) to prevent spam attacks. In liue of a network fee,
+ a computational puzzle must be solved in order submit a transaction to the network. This puzzle can even be outsourced to third parties
+and they may be precalculated. There is some concern that the PoW may not be enough to deter network spam
+<span class="citation">lee_faq</span>
+<span class="citation">spam_cost</span>. While a number of solutions are proposed,
+one in particular has begun development. This upgrade will dynamically scale PoW based on account usage and transaction size
+<span class="citation">github_pow_scaling</span>.
+
+
+
+<h2>Protection from Ledger Bloat</h2>
+The article posted above specifically mentions ledger bloat, by where the number of historical transactions grows
+until the ledger becomes an incredible size. Fortunately, a fix is already being developed as a major network upgrade.
+In future versions, the ledger can be pruned to only the most recent transactions in an account history
+<span class="citation">ledger_pruning_wallet_bloat</span>. If an account balance is zero, it may be removed from the ledger.
+
+
+
+<h2>Protection from Wallet Bloat</h2>
+Another attack vector comes in form of a penny spend attack, where small quantities are sent to a number of wallet addresses
+and the ledger bloats to unmanagable sizes.
+There are fixes proposed<span class="citation">github_attack_vectors</span>, although a trivial solution exists should
+Nano developers implement it: account minimums<span class="citation">ledger_pruning_wallet_bloat</span><span class="citation">reddit_rant</span>.
+ With account minimums in place, an attacker would have to acquire a large amount of Nanos. Let's say the minimum was 0.001 Nanos
+(0.12 cents at time of writing) and an attacker acquired 1,000,000 Nanos (nearly 1% of supply). In this extreme case, the
+ledger could only be bloated to 128 GB (1,000,000,000 wallets x 128 Bytes). As storage space and computational power increases,
+ the account minimums could be decreased.
+
+
+<h2>Protection from Unpocketed Transaction Bloat</h2>
+Under construction. But quick numbers suggest that transaction minimums can prevent this kind of bloat.
+
+
+<h2>References</h2>
+<ol class="bibliography" id="bibliography" >
+</ol>
+Last updated 8-13-2018
+
+
+{% endblock %}

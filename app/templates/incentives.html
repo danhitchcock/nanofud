@@ -1,0 +1,55 @@
+{% extends "explanation_template.html" %}
+{% block title %}
+Incentives
+{% endblock %}
+{% block email %}
+Incentive Suggestions
+{% endblock %}
+{% block body %}
+<script>
+    references = {
+        lee_faq: "https://www.reddit.com/r/nanocurrency/comments/80c6fg/questions_about_nano_from_charlie_lee/",
+        nano_pod: "https://medium.com/@schenkty/pod-a-new-plug-and-play-nano-node-272a7d0fc348",
+        meor_node: "https://www.reddit.com/r/CryptoCurrency/comments/7bogat/the_next_vertcoin_raiblocks_offers_instant/dpk3vbe",
+        ledger_pruning: 'https://developers.nano.org/roadmap/ledger-pruning/',
+        github_commits: 'https://github.com/nanocurrency/raiblocks/commits/master',
+        fynestuff: 'https://fynestuff.com/nano-node-incentive/',
+    }
+</script>
+
+<h1>Node Incentives</h1>
+
+It is correct there is no direct financial incentive to run a node. But there are other financial reasons to do so. For this, the focus
+of the Nano developers is to make running a node as simple and easy as possible in order for node operators to focus on the positive effects.
+<br><br></br>Also, <a href="https://fynestuff.com/nano-node-incentive/">this person</a> is a better writer than I am and has an
+excellent essay explaining why Nodes and representatives won't be an issue<span class="citation">fynestuff</span>.
+
+<h2>Running a node is cheap and easy.</h2>
+The Nano team is mindful of both monetary and time costs of running a node, thus is making this process as simple as possible<span class="citation">lee_faq</span>.
+In fact, a third party device has even been developed to allow for plug-and-play node operations<span class="citation">nano_pod</span>. By keeping the operating costs low,
+users can focus on the non-financial benefits of running their own node. In fact, for a large retailer, running a node would be substantially cheaper than 3-5% credit card fees.
+
+<h2>Users can run as a representative to secure the network.</h2>
+It is in the best interest of anyone who owns Nano to secure the network and their investment.
+For this reason, Nano uses a delegated proof-of-stake design to validate transactions.
+By running a node and delegating your votes to it, you are securing the network security and ensuring its decentralization<span class="citation">meor_node</span>.
+
+<h2>Retailers and high volume accounts will run their own nodes.</h2>
+Imagine a future where retailers, such as Wal-Mart or Amazon, accept Nano as payment. They will be dealing with large amounts of the coin on a daily basis, needing to both verify transactions and
+calculate PoW. They will not want to rely on a third party (another node) to verify transactions, thus will have their own their own installed, ensuring that all transactions valid. Further,
+their stake in Nano, as a large account holder, will be to incentive assign their own node as their representative.
+
+<h2>Ledger pruning and software optimizations will ensure the costs remain low.</h2>
+The Nano protocol allows for ledger pruning<span class="citation">ledger_pruning</span>, and optimized node versions are continually
+being released<span class="citation">github_commits</span>. Based on their active GitHub account, node software optimizations are expected to continue and node hardware requirements will remain low.
+<br><br>
+Nodes & decentralization go hand in hand. Please check out <a href="/decentralization">the decentralization page</a> as well.
+
+
+
+<ol class="bibliography" id="bibliography" >
+</ol><br>
+Last updated 6-14-2018
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "explanation_template.html" %}
+{% block title %}
+Spam Attacks
+{% endblock %}
+{% block email %}
+Spam Attacks Suggestions
+{% endblock %}
+{% block body %}
+<script>
+    references = {
+        reddit_discussion: 'https://www.reddit.com/r/nanocurrency/comments/8kljqo/saturday_discussion_privacy/',
+        reddit2: 'https://www.reddit.com/r/nanocurrency/comments/8ql31z/nano_privacy_and_you/',
+    }
+</script>
+
+<h1>Nano Privacy</h1>
+Please read <a href="https://www.reddit.com/r/nanocurrency/comments/8kljqo/saturday_discussion_privacy/">this discussion</a> on Nano privacy if you'd like to see all the opinions<span class="citation">reddit_discussion</span>.
+<h2>Nano can be very private through rolling wallet addresses and mixers.</h2>
+Wallet level privacy will come through the use of rolling Nano addresses<span class="citation">reddit2</span>. Since Nano is instant and has
+no transaction fees, they can be used with any small amount of Nano, never leaving dust behind. Further, 3rd party mixers
+can conceal addresses.
+<h2>Every Nano "privacy fork" is a scam.</h2>
+Please don't give any money to ICOs for them.
+
+
+<ol class="bibliography" id="bibliography" >
+</ol>
+Last updated 6-14-2018
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "explanation_template.html" %}
+{% block title %}
+Decentralization
+{% endblock %}
+{% block email %}
+Decentralization Suggestions
+{% endblock %}
+{% block body %}
+<script>
+    references={
+        current_dist: "https://www.nanode.co/representatives",
+        roadmap_dist: "https://developers.nano.org/roadmap/vote-distribution/",
+        white_paper: "https://nano.org/en/whitepaper",
+        nano_pod: "https://medium.com/@schenkty/pod-a-new-plug-and-play-nano-node-272a7d0fc348",
+        officially_dec: "https://www.reddit.com/r/nanocurrency/comments/8u8hcj/nano_is_now_truly_decentralized/",
+    }
+</script>
+<h1>Decentralization</h1>
+<h2>Nano is decentralized.</h2>
+The Nano ledger itself is stored on nodes; anyone is free to operate a node, the community is lowering the difficulty to
+run nodes<span class="citation">nano_pod</span>, and users may select any node as their representative.
+Confusion and misinformation regarding centralization arises from the current voting power distribution. Formerly, a majority of voting
+power is delegated (by its users) to Official Nano Representatives. This is no longer the case<span class="citation">officially_dec</span>, and the developers control less than 35% of voting weight.<span class="citation">current_dist</span>.
+Further, the developers have no interest in maintaining such a large voting weight and are actively encouraging users to
+select other representatives<span class="citation">roadmap_dist</span>.
+
+
+<h2>Nano is fast because of block lattice DAG, not because of 'centralization'.</h2>
+Nano uses a block lattice (as opposed to a blockchain), which does not require mining to add blocks.
+Transactions are recorded immediately when seen by the network, and the speed at which this happens is
+theoretically limited only by node hard disk
+write speed and internet latency<span class="citation">white_paper</span>.
+As technology improves, both the throughput and latency of transactions will improve accordingly.
+<br><br>
+Nodes & decentralization go hand in hand. Please check out <a href="/incentives">the node incentives page</a> as well.
+<h3>References</h3>
+<ol class="bibliography" id="bibliography" >
+</ol>
+Last updated 8-1-2018
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "explanation_template.html" %}
+{% block title %}
+Distribution
+{% endblock %}
+{% block email %}
+Distribution Suggestions
+{% endblock %}
+{% block body %}
+<script>
+    var references = {
+        old_sec:"https://www.sec.gov/news/public-statement/statement-clayton-2017-12-11",
+        new_sec:"https://www.cnbc.com/2018/06/06/sec-chairman-clayton-says-agency-wont-change-definition-of-a-security.html",
+        github_distribution:"https://github.com/nanocurrency/raiblocks/wiki/Distribution,-Mining-and-Units",
+        twitter_faucet:"https://twitter.com/nano/status/919668247607177216",
+        nanode_dev: "https://www.nanode.co/account/xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est"
+    }
+
+</script>
+<h1>Distribution</h1>
+<h2> Nano was never ICO'd.</h2>
+Unlike many other coins which were ICO'd, Nano developers never asked for money in exchange for Nano (formerly Raiblocks).
+This also has positive legal implications for the future of Nano, and is unlikely to be considered a security by the USA
+<span class="citation">old_sec</span>
+<span class="citation">new_sec</span>.
+
+<h2> Nano was distributed freely via captcha mining.</h2>
+Nano does not use mining (thus miners cannot be rewarded), it was instead distributed freely via captcha
+<span class="citation">github_distribution</span>.
+
+<h2> Nano developers control less than 5% of the currency.</h2>
+Nano Foundation currently controls less than 5% of the total currency
+<span class="citation">twitter_faucet</span>
+<span class="citation">nanode_dev</span>.
+This number will continue to decrease as Nano is spent to pay for development expenses.
+
+<ol class="bibliography" id="bibliography" >
+</ol>
+Last updated 6-14-2018
+{% endblock %}

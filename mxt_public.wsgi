@@ -1,0 +1,1 @@
+import sysimport logginglogging.basicConfig(stream=sys.stderr)sys.path.insert(0,"/var/www/mxt_public/")sys.path.insert(0,"/var/www/mxt_public/mxt_public/")from mxt_public import app as application

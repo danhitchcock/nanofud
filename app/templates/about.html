@@ -1,0 +1,45 @@
+{% extends "explanation_template.html" %}
+{% block title %}
+About
+{% endblock %}
+{% block email %}
+Suggestions
+{% endblock %}
+{% block body %}
+
+<script>
+    references = {
+        original_post: "https://www.reddit.com/r/nanocurrency/comments/8kd83r/we_need_something_like_this_for_nano_to_fight_fud/",
+        fud_bingo: "https://fudbingo.com/",
+        nano: "https://Nano.org",
+        flip_card: 'https://davidwalsh.name/demo/css-flip.php',
+        background_site: 'https://www.reddit.com/r/RaiBlocks/comments/7uaqdx/nano_4k_wallpapers/',
+
+    }
+</script>
+
+<h2>I am a Nano enthusiast.</h2>
+Why do I believe in Nano? Because I've never had to brush things aside, ignore elephants in the room, or outright lie to defend it. I created this site
+to dispel some of the rumors or misinformation about a coin which will be one of the most important in the future.
+Nano is feeless, instant, and decentralized. It does one thing, and does it well.
+
+
+<h2>I am not affiliated with the Nano Foundation.</h2>
+There is nothing official about this website. In fact, it's simply a guy on the internet, and we all know how believable they are.
+That being said, I consider myself pretty trustworthy--I've attempted to cite every reference I have used to build this website,
+and if anything is incorrect I will happily remove it. I'm doing my best to be objective and only state facts.
+<h2>Much thanks is owed.</h2>
+The idea for this site came from a reddit post<span class="citation">original_post</span>,
+which linked the XRP Fud Bingo website<span class="citation">fud_bingo</span>. I shamelessly borrowed the notecard CSS code
+from here<span class="citation">flip_card</span>, and the background from here<span class="citation">background_site</span>.
+The Nano logo was ripped directly from the Nano.org site<span class="citation">nano</span>
+before getting the MSPaint treatment. I am not a professional web developer.
+Most of my time was spent fighting CSS.
+
+<ol class="bibliography" id="bibliography" >
+</ol>
+If you would like to donate help host this website, I accept Nano!<br>
+<img src="{{url_for('static', filename='nanofudqr.png')}}">
+<br>
+xrb_3nofud9zk1bqs6a7cnj1cjd8pdhqucm5g3fwwifchoszyodw81wqmgtryxzd
+{% endblock %}
